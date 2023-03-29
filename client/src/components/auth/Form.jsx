@@ -4,7 +4,7 @@ import {
     TextField,
     useMediaQuery,
     Typography,
-    useTheme,
+    Alert
 } from "@mui/material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Formik } from "formik";
@@ -46,11 +46,11 @@ const initialValuesLogin={
 const Form=() => {
     const [pageType, setPageType]=useState("login");
     const dispatch=useDispatch();
-    const navigate=useNavigate();
     const isNonMobile=useMediaQuery("(min-width:600px)");
     const isLogin=pageType==="login";
     const isRegister=pageType==="register";
     const [isLoad, setLoad]=useState(false);
+    const [error, setError]=useState("")
 
     const register=async (values, onSubmitProps) => {
         setLoad(true)
@@ -68,11 +68,12 @@ const Form=() => {
                     setLoad(false)
                 })
 
-        } catch (error) {
+        } catch (err) {
             setLoad(false)
             onSubmitProps.resetForm();
-            console.log(error)
+            setError(error.response.data.msg)
         }
+        // console.log(error)
         setLoad(false)
         onSubmitProps.resetForm()
     };
@@ -91,11 +92,12 @@ const Form=() => {
                     onSubmitProps.resetForm();
                     setLoad(false)
                 })
-        } catch (error) {
+        } catch (err) {
             onSubmitProps.resetForm();
             setLoad(false)
-            console.log(error)
+            setError(err.response.data.msg)
         }
+
     };
 
     const handleFormSubmit=async (values, onSubmitProps) => {
@@ -227,6 +229,8 @@ const Form=() => {
                                 ? "Don't have an account? Sign Up here."
                                 :"Already have an account? Login here."}
                         </Typography>
+                        {error? (<Alert severity="error" sx={{ marginTop: "1rem" }}>{error}</Alert>):null}
+
                     </Box>
                 </form>
             )}

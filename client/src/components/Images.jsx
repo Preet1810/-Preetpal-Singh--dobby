@@ -3,10 +3,12 @@ import { Grid, Card, CardMedia, CircularProgress, CardContent, Typography, TextF
 import config from '../config'
 import FlexBetween from './FlexBetween';
 import { useSelector } from "react-redux";
+
 const Images=() => {
     const [searchTerm, setSearchTerm]=useState('');
     const token=useSelector((state) => state.token);
     const [images, setImages]=useState([]);
+
     useEffect(() => {
         fetch(`${config.API_BASE_URL}`, {
             method: 'GET',
@@ -27,8 +29,6 @@ const Images=() => {
         }
         return image.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-
-
 
     return (
         <div style={{ flexGrow: 1, marginLeft: 50, marginRight: 90 }}>
@@ -90,9 +90,10 @@ const Images=() => {
                     </Grid>
                 </FlexBetween>
             ):(
-                <CircularProgress />
-            )
-            }
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+                    <Typography variant="h6" color={"white"}>User have no Images</Typography>
+                </div>
+            )}
         </div>
     );
 };
