@@ -3,14 +3,12 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import Form from './Form'
 
 const LoginPage=() => {
-    // const theme=useTheme();
     const isNonMobileScreens=useMediaQuery("(min-width: 1000px)");
     return (
         <Box>
             <Box
                 width="100%"
                 backgroundColor="black"
-                // p=""
                 textAlign="center"
             >
                 <Typography fontWeight="bold" fontSize="32px" color="primary">

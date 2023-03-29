@@ -7,6 +7,8 @@ import * as yup from "yup";
 import config from '../config';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+//validation
 const postSchema=yup.object().shape({
     name: yup.string().required("required"),
     picture: yup

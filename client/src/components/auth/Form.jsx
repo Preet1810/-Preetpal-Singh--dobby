@@ -73,7 +73,6 @@ const Form=() => {
             onSubmitProps.resetForm();
             setError(error.response.data.msg)
         }
-        // console.log(error)
         setLoad(false)
         onSubmitProps.resetForm()
     };
@@ -119,7 +118,6 @@ const Form=() => {
                 handleBlur,
                 handleChange,
                 handleSubmit,
-                setFieldValue,
                 resetForm,
             }) => (
                 <form onSubmit={handleSubmit}>
@@ -229,6 +227,7 @@ const Form=() => {
                                 ? "Don't have an account? Sign Up here."
                                 :"Already have an account? Login here."}
                         </Typography>
+
                         {error? (<Alert severity="error" sx={{ marginTop: "1rem" }}>{error}</Alert>):null}
 
                     </Box>
